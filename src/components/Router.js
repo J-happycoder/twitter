@@ -8,12 +8,12 @@ import Navigation from "./Navigation";
 const Router = ({ user }) => {
   return (
     <HashRouter>
-      {user && <Navigation />}
+      {user && <Navigation user={user} />}
       <Routes>
         {user ? (
           <>
             <Route exact path="/" element={<Home user={user} />} />
-            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/profile" element={<Profile user={user} />} />
           </>
         ) : (
           <Route exact path="/" element={<Auth />} />
