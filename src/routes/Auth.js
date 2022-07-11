@@ -5,8 +5,8 @@ import SocialAuth from "../components/auth/SocialAuth";
 const Auth = () => {
   const [errorMessage, setErrorMessage] = useState("");
   return (
-    <div>
-      {errorMessage !== "" ? <span>{errorMessage}</span> : null}
+    <div className="auth_container">
+      {errorMessage !== "" ? <span className="error_message">{errorMessage}</span> : null}
       <EmailAuth setErrorMessage={setErrorMessage} />
       <SocialAuth setErrorMessage={setErrorMessage} />
     </div>

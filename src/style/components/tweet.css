@@ -1,0 +1,37 @@
+.tweet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  background-color: white;
+  padding: 10px 0px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.tweet img {
+  margin-left: 10px;
+}
+
+.tweet_information {
+  display: flex;
+  align-items: center;
+}
+
+.tweet:hover .delete_button {
+  opacity: 1;
+}
+
+.delete_button {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.tweet_text {
+  margin-left: 10px;
+  color: #555;
+}

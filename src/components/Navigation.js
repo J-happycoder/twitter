@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navigation = ({ user }) => {
+const Navigation = () => {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
+      <ul className="links">
+        <li className="link">
+          <Link to="/">
+            <i className="fa-brands fa-twitter navigation_icon" />
+          </Link>
         </li>
-        <li>
-          <Link to="/profile">{user.displayName}</Link>
+        <li className="link">
+          <Link to="/profile">
+            <i className="fa-solid fa-user navigation_icon" />
+          </Link>
         </li>
       </ul>
     </nav>

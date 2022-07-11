@@ -1,0 +1,44 @@
+.auth_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form.auth_form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+input.auth_input {
+  padding: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: linear-gradient(to right, #bcecff, #ffdbf3);
+  color: #333;
+}
+
+.auth_submit_button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.auth_change_button {
+  margin-top: 14px;
+}
+
+.error_message {
+  color: rgb(255, 84, 113);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.social_button {
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+.social_icon {
+  font-size: 20px;
+}

@@ -31,8 +31,12 @@ const SocialAuth = ({ setErrorMessage }) => {
 
   return (
     <div>
-      <button onClick={onGoogleClick}>Continue with Google</button>
-      <button onClick={onGithubClick}>Continue with Github</button>
+      <button className="social_button" onClick={onGoogleClick}>
+        <i className="fa-brands fa-google social_icon" />
+      </button>
+      <button className="social_button" onClick={onGithubClick}>
+        <i className="fa-brands fa-github social_icon" />
+      </button>
     </div>
   );
 };

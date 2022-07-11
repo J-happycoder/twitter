@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { database, storage } from "../fbase";
+import { database, storage } from "../../fbase";
 
 import { v4 as uuid } from "uuid";
 
@@ -10,6 +10,7 @@ const TweetForm = ({ user }) => {
   const [text, setText] = useState("");
   const [imageFile, setImageFile] = useState();
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const onTextChange = (event) => setText(event.target.value);
   const onFileChange = (event) => {
@@ -40,6 +41,7 @@ const TweetForm = ({ user }) => {
     if (text === "" || !imageFile) {
       return;
     }
+    setIsUploading(true);
     const photoRefPath = `photos/${uuid()}`;
     const photoRef = ref(storage, photoRefPath);
     await uploadPhoto(photoRef);
@@ -53,31 +55,45 @@ const TweetForm = ({ user }) => {
       photoRefPath,
     };
     await uploadTweet(tweet);
+    setIsUploading(false);
     setText("");
     setImageFile();
     setImagePreviewUrl("");
   };
 
   return (
-    <form onSubmit={onTweetSubmit}>
-      {imagePreviewUrl !== "" && <img src={imagePreviewUrl} alt="" width="50px" height="50px" />}
-      <input
-        type="text"
-        placeholder="Write anything you think."
-        value={text}
-        onChange={onTextChange}
-      />
-      <label htmlFor="photo">Select Photo</label>
-      <input
-        id="photo"
-        type="file"
-        accept="image/*"
-        onChange={onFileChange}
-        style={{
-          display: "none",
-        }}
-      />
-      <input type="submit" value="Tweet" />
+    <form className="tweet_form" onSubmit={onTweetSubmit}>
+      <div className="container">
+        {imagePreviewUrl !== "" ? (
+          <img className="photo" src={imagePreviewUrl} alt="" />
+        ) : (
+          <div className="photo"></div>
+        )}
+        <label className="photo_selector" htmlFor="photo">
+          Change
+        </label>
+        <input
+          id="photo"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          className="file_input"
+        />
+      </div>
+      <div className="container">
+        <input
+          className="tweet_input"
+          type="text"
+          placeholder="What's on your mind?"
+          value={text}
+          onChange={onTextChange}
+        />
+        <input
+          className="tweet_submit_button"
+          type="submit"
+          value={isUploading ? "Tweeting..." : "Tweet"}
+        />
+      </div>
     </form>
   );
 };

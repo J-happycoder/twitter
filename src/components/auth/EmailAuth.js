@@ -18,8 +18,8 @@ const EmailAuth = ({ setErrorMessage }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (email === "") {
-      setErrorMessage("Email is Required.");
+    if (email === "" || password === "") {
+      setErrorMessage("Email or Password is Required");
       return;
     }
     try {
@@ -37,6 +37,7 @@ const EmailAuth = ({ setErrorMessage }) => {
   const changeIsNewAccount = () => {
     cleanForm();
     setIsNewAccount((previous) => !previous);
+    setErrorMessage("");
   };
   const cleanForm = () => {
     setEmail("");
@@ -45,17 +46,30 @@ const EmailAuth = ({ setErrorMessage }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <input type="text" placeholder="Email" value={email} onChange={onEmailChange} />
+      <form className="auth_form" onSubmit={onSubmit}>
         <input
+          className="auth_input"
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={onEmailChange}
+        />
+        <input
+          className="auth_input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={onPasswordChange}
         />
-        <input type="submit" value={isNewAccount ? "Create Account" : "Log In"} />
+        <input
+          className="submit_button auth_input"
+          type="submit"
+          value={isNewAccount ? "Create Account" : "Log In"}
+        />
       </form>
-      <span onClick={changeIsNewAccount}>{isNewAccount ? "Log In" : "Create Account"}</span>
+      <span className="link auth_change_button" onClick={changeIsNewAccount}>
+        {isNewAccount ? "Log In" : "Create Account"} &rarr;
+      </span>
     </>
   );
 };
